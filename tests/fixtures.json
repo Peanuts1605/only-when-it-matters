@@ -1,0 +1,44 @@
+[
+  {
+    "event_id": "evt-newsletter",
+    "contest": "WebMCP Challenge",
+    "kind": "newsletter",
+    "sender": "updates@example.test",
+    "subject": "Weekly inspiration",
+    "received_at": "2026-08-30T12:00:00Z"
+  },
+  {
+    "event_id": "evt-receipt",
+    "contest": "WebMCP Challenge",
+    "kind": "registration_confirmation",
+    "sender": "support@example.test",
+    "subject": "Registration received",
+    "received_at": "2026-08-30T12:05:00Z"
+  },
+  {
+    "event_id": "evt-organizer",
+    "contest": "CALL-E",
+    "kind": "organizer_request",
+    "sender": "organizer@example.test",
+    "subject": "Add proof-call disclosure",
+    "received_at": "2026-08-30T12:10:00Z",
+    "actionable": true
+  },
+  {
+    "event_id": "evt-winner",
+    "contest": "Agents for Humans",
+    "kind": "winner",
+    "sender": "organizer@example.test",
+    "subject": "You won",
+    "received_at": "2026-08-30T12:15:00Z"
+  },
+  {
+    "event_id": "evt-receipt",
+    "contest": "WebMCP Challenge",
+    "kind": "registration_confirmation",
+    "sender": "support@example.test",
+    "subject": "Registration received",
+    "received_at": "2026-08-30T12:05:00Z"
+  }
+]
+
