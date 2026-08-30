@@ -9,6 +9,8 @@ eligibility action, acceptance, rejection, or verified win.
 
 ## Judge route
 
+**Live proof:** https://only-when-it-matters.gigantic-stranger.workers.dev/
+
 ```bash
 python -m venv .venv
 .venv/bin/pip install -e '.[dev]'
@@ -55,4 +57,3 @@ SQLite ledger makes retries idempotent and metrics replayable.
 This first vertical slice uses public-safe fixtures. It does not read live mail, send replies, accept
 contest terms, or claim that a submission happened. A live provider adapter and free judge-facing
 surface are the next build stage.
-

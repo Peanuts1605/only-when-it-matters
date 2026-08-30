@@ -1,0 +1,9 @@
+{
+  "$schema": "../aqua-webmcp-challenge/node_modules/wrangler/config-schema.json",
+  "name": "only-when-it-matters",
+  "account_id": "68df73985c906dbd9bdfc82dd7b2c58a",
+  "compatibility_date": "2026-08-30",
+  "assets": {
+    "directory": "./site"
+  }
+}

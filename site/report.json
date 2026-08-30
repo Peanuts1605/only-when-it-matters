@@ -1,0 +1,55 @@
+{
+  "outcomes": [
+    {
+      "event_id": "evt-newsletter",
+      "contest": "WebMCP Challenge",
+      "decision": "IGNORE",
+      "reason": "non-delivery noise",
+      "exact_action": null,
+      "interrupt_human": false,
+      "duplicate": false
+    },
+    {
+      "event_id": "evt-receipt",
+      "contest": "WebMCP Challenge",
+      "decision": "RECORD",
+      "reason": "useful delivery evidence without a human decision",
+      "exact_action": null,
+      "interrupt_human": false,
+      "duplicate": false
+    },
+    {
+      "event_id": "evt-organizer",
+      "contest": "CALL-E",
+      "decision": "ESCALATE",
+      "reason": "organizer requested a concrete action",
+      "exact_action": "Respond to the organizer requirement in: Add proof-call disclosure",
+      "interrupt_human": true,
+      "duplicate": false
+    },
+    {
+      "event_id": "evt-winner",
+      "contest": "Agents for Humans",
+      "decision": "ESCALATE",
+      "reason": "contest winner requires human awareness",
+      "exact_action": "Review Agents for Humans: You won",
+      "interrupt_human": true,
+      "duplicate": false
+    },
+    {
+      "event_id": "evt-receipt",
+      "contest": "WebMCP Challenge",
+      "decision": "RECORD",
+      "reason": "useful delivery evidence without a human decision",
+      "exact_action": null,
+      "interrupt_human": false,
+      "duplicate": true
+    }
+  ],
+  "metrics": {
+    "unique_events": 4,
+    "human_interruptions": 2,
+    "interruptions_avoided": 2,
+    "avoidance_rate": 0.5
+  }
+}
