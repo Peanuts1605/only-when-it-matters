@@ -46,7 +46,7 @@
           <h2>One saved decision.<br />No repeated action.</h2>
         </div>
         <ol>
-          <li><span>01</span><div><strong>Two paths, clearly separated</strong><p>This fixture calls the policy directly. A local Qwen/Strands run executed triage successfully, but failed the strict sequence by calling the retry tool twice. Both retries stayed quiet. This page is not a live model run.</p></div></li>
+          <li><span>01</span><div><strong>Two paths, clearly separated</strong><p>This fixture calls the policy directly. One separate local Qwen/Strands evaluation completed guarded triage, quiet retry and metrics. Application hooks validate the tool call and return checked JSON. This page is not a live model run; one evaluation is not a reliability rate.</p></div></li>
           <li><span>02</span><div><strong>Deterministic policy decides</strong><p>Trusted fixture labels drive explicit rules. This prototype does not verify senders or establish that a claimed win is real.</p></div></li>
           <li><span>03</span><div><strong>The ledger makes retry quiet</strong><p>The original decision stays unchanged. A repeated ID returns no interruption flag and no action, including after reopening the ledger.</p></div></li>
         </ol>

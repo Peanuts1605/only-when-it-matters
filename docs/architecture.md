@@ -8,9 +8,10 @@ Contest operators need fewer repeated demands on their attention. This prototype
 events, saves each first decision in SQLite, and returns one suggested action when its rules choose
 escalation. When an event ID repeats, its original record stays unchanged and the new delivery returns
 no action. The public page displays a generated fixture report, not a live agent session. A separate
-Strands agent registers triage and metrics tools. Real local-model triage execution is demonstrated,
-but the strict sequence failed after the model called the retry tool twice; final model-driven metrics
-were not reached. Counts describe policy decisions, not messages delivered or time saved.
+guarded Strands route exposes one tool per fresh request and validates calls and results using
+application hooks. One local-model evaluation completed original triage, quiet retry and metrics.
+The earlier unconstrained sequence failure remains documented separately. Counts describe policy
+decisions, not messages delivered or time saved.
 
 Assumptions: event labels and IDs are trusted; one local process owns the ledger. Falsifier: any
 replayed ID returns an actionable interruption, or the demo is described as a live model run.
@@ -22,10 +23,12 @@ replayed ID returns an actionable interruption, or the demo is described as a li
    delivery result. Metrics read only first decisions, so replay does not change the denominator.
 3. `scripts/build_site.py` creates `site/report.json`; the static browser page fetches and displays it.
    The Replay button fetches this same report again. It is not a backend invocation or database mutation.
-4. Separately, `agent.build_agent(model=...)` constructs a Strands agent exposing decorated
-   `triage_contest_event` and `campaign_attention_metrics`. Direct decorated-tool invocation is tested;
-   actual SDK worker-thread execution is also tested. Local Qwen successfully selected/executed triage;
-   complete sequence reliability, provider recovery and final model prose remain unverified.
+4. Separately, `guarded.run_guarded_request` exposes the requested decorated tool to a fresh Strands
+   agent. `BeforeToolsEvent` rejects the whole batch unless exactly one unchanged expected call is
+   proposed. `AfterToolsEvent` requires the matching successful result and exact expected payload,
+   then ends the turn with application-generated JSON. Tools use the caller's explicit EventStore.
+   One real Qwen original/retry/metrics sequence passed; later result hardening was validated
+   retrospectively, not through another model invocation. Legacy `build_agent` is not guarded.
 
 ## Retry invariants and acceptance
 
@@ -42,7 +45,9 @@ failure found by a real Strands run. Twelve concurrent SDK-wrapper retries produ
 Scope excludes coordination between separate store instances/processes, content-change detection for a reused ID, actual notification
 delivery, external sender/winner verification, and overdue-event policy validation. A retry after an
 unobserved first response returns quiet; this is not a transactional exactly-once notification system.
-Inputs supplied by an unconstrained model would need independent source validation before live use.
+Inputs still need independent source validation before live use. Expected-result preview precedes
+execution: concurrent changes or time-dependent classifications can fail closed. This is not
+multi-process coordination. Synthetic before/after-commit failures and recovery are not live outages.
 
 ## Metrics
 

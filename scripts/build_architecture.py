@@ -67,8 +67,8 @@ def build() -> Path:
     arrow(755, 381, 805, 381)
 
     text(42, 423, "SEPARATE STRANDS INTEGRATION", 11, True, QUIET)
-    box(42, 318, 205, "Local Qwen + Strands", ["Real triage execution verified", "Strict sequence: FAIL"], CORAL)
-    box(295, 318, 205, "Registered tools", ["Model called retry twice", "Both retries returned quiet"], CORAL)
+    box(42, 318, 205, "Local Qwen + Strands", ["One guarded 3-phase PASS", "Original / quiet retry / metrics"], CORAL)
+    box(295, 318, 205, "Application hooks", ["One unchanged tool call", "Checked deterministic result"], CORAL)
     arrow(247, 356, 295, 356, dashed=True)
     arrow(500, 356, 530, 356, dashed=True)
     c.setStrokeColor(QUIET)
@@ -77,7 +77,7 @@ def build() -> Path:
     c.line(530, 462, 650, 462)
     c.setDash()
     arrow(650, 462, 650, 482, dashed=True)
-    text(42, 288, "Solid: fixture flow. Dashed: separate real-model partial proof; complete sequence not accepted.", 11)
+    text(42, 288, "Solid: fixture flow. Dashed: one separate guarded model evaluation; not a reliability-rate claim.", 11)
 
     c.setStrokeColor(HexColor("#bdcac2"))
     c.line(42, 261, 958, 261)
@@ -85,7 +85,7 @@ def build() -> Path:
     text(42, 207, "4 unique events  /  2 quiet decisions  /  2 escalation decisions  /  1 quiet duplicate", 15, True)
     text(42, 183, "These are fixture policy decisions, not delivered notifications, verified wins, or measured time saved.", 12)
     text(42, 143, "TRUST BOUNDARY", 11, True, QUIET)
-    text(42, 119, "Event labels and IDs are trusted inputs. No live inbox, sender verification, or final-model-output enforcement.", 12)
+    text(42, 119, "Trusted event labels and IDs. No live inbox or sender verification. Guarded output is application-generated JSON.", 12)
     text(42, 98, "One shared store is thread-safe. Separate processes, reused IDs with changed content and expiry need more work.", 12)
     text(42, 53, "Source: github.com/Peanuts1605/only-when-it-matters | MIT | See docs/architecture.md for limits", 11, color=QUIET)
     c.save()

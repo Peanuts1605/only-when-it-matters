@@ -5,4 +5,5 @@ __pycache__/
 .ruff_cache/
 *.pyc
 *.sqlite3
-
+node_modules/
+demo-film/out/

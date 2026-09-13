@@ -32,6 +32,23 @@ class EventStore:
             return self._process_locked(event)
 
     def _process_locked(self, event: Event) -> tuple[Classification, bool]:
+        classification, duplicate = self._preview_locked(event)
+        if duplicate:
+            return classification, True
+        with self.connection:
+            self.connection.execute(
+                "INSERT INTO event_decisions(event_id, event_json, decision_json) VALUES (?, ?, ?)",
+                (event.event_id, json.dumps(event.to_dict(), sort_keys=True),
+                 json.dumps(classification.to_dict(), sort_keys=True)),
+            )
+        return classification, False
+
+    def preview(self, event: Event) -> tuple[Classification, bool]:
+        """Read the expected result without mutation; concurrent changes may invalidate it."""
+        with self._lock:
+            return self._preview_locked(event)
+
+    def _preview_locked(self, event: Event) -> tuple[Classification, bool]:
         existing = self.connection.execute(
             "SELECT decision_json FROM event_decisions WHERE event_id = ?", (event.event_id,)
         ).fetchone()
@@ -44,17 +61,7 @@ class EventStore:
                 False,
             ), True
 
-        classification = classify_event(event)
-        with self.connection:
-            self.connection.execute(
-                "INSERT INTO event_decisions(event_id, event_json, decision_json) VALUES (?, ?, ?)",
-                (
-                    event.event_id,
-                    json.dumps(event.to_dict(), sort_keys=True),
-                    json.dumps(classification.to_dict(), sort_keys=True),
-                ),
-            )
-        return classification, False
+        return classify_event(event), False
 
     def metrics(self) -> dict[str, int | float]:
         """Count unique-event policy decisions, not delivered human notifications."""

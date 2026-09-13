@@ -1,6 +1,45 @@
 # Local Strands model proof — September 13, 2026
 
-Status: **PARTIAL EXECUTION PROOF; STRICT SEQUENCE FAIL**.
+Status: **ONE GUARDED REAL-MODEL SEQUENCE PASS**. Earlier unconstrained failure preserved below.
+
+## Successful guarded evaluation
+
+Recorded September 13, 2026; output verified at 16:55:18 UTC. The local Qwen model selected
+the sole available tool and supplied its arguments in three fresh requests sharing one isolated
+in-memory ledger. `scripts/verify_guarded_model.py` returned exit 0 and PASS for all phases:
+
+The [unaltered public-safe evaluation artifact](guarded-model-run.json) retains tool calls/results
+and completion flags, with fictional inputs only and no model reasoning or credentials.
+
+1. Original `guarded-local-1` organizer request: ESCALATE, one exact response action,
+   `interrupt_human=true`, `duplicate=false`.
+2. Same event in a fresh request: RECORD, no action, `interrupt_human=false`, `duplicate=true`.
+3. Metrics: one unique event, one escalation decision, zero unique quiet decisions, rate 0.0.
+
+All phases ended normally. `completion_origin="application_after_tools_hook"`: application
+hooks validate the call and return deterministic JSON. This is model-selected tool execution,
+not autonomous model authorship of the final response. A request exposes only its one allowed
+tool; a changed input or extra call rejects the entire batch before tool execution.
+
+The saved run preceded a later hardening of result checks from dictionary shape to exact whole
+payload equality against `store.preview(Event)` or metrics. An independent reviewer replayed
+all three saved phases through the hardened gate with an isolated ledger: all matched. Malformed
+JSON and mismatched result IDs were rejected in six injected cases. This is retrospective
+validation, **not another model run**. The outer checker already required the observed exact
+decisions, actions and metrics during the successful evaluation.
+
+Thirty-five synthetic tests separately cover SDK invocation, rejected batches/results, timeouts,
+and injected failures before and after saving followed by a fresh request. They do not demonstrate
+a live provider outage. One observed model sequence does not establish a reliability percentage.
+
+Preview and execution are separate operations. Concurrent ledger changes or time-dependent deadline
+reasons can invalidate the expected result and fail closed; this organizer-event demonstration
+does not prove stable acceptance for every event type. The old `build_agent` route is retained
+but does not acquire the guarded route's guarantees.
+
+Reproduce with a separately verified, cloud-disabled local Ollama instance on port 11435:
+`OTEL_SDK_DISABLED=true .venv/bin/python scripts/verify_guarded_model.py --output /tmp/owim-guarded.json`.
+This script never resets the ordinary persistent application database.
 
 Environment: Strands Agents SDK 1.54.0, installed Ollama 0.32.15, preinstalled local
 qwen3:4b (catalog digest prefix 359d7dd4bcda), loopback port 11435. The temporary
@@ -15,7 +54,7 @@ serializes lookup, classification, insert/commit and metrics queries. A regressi
 test invokes the real SDK `.stream()` wrapper with twelve concurrent deliveries:
 one actionable original, eleven quiet duplicates, one saved escalation.
 
-## Actual repaired model run
+## Earlier repaired but unconstrained model run — historical FAIL
 
 Input: fictional organizer_request, event ID local-model-organizer-1, subject
 Add a demo disclosure, organizer@example.test, actionable true.

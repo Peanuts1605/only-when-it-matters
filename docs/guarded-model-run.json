@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-09-13T16:55:18.931621+00:00",
+  "model": "qwen3:4b",
+  "provider": "local Ollama / Strands 1.54.0",
+  "completion_origin": "application_after_tools_hook",
+  "phases": [
+    {
+      "tool": "triage_contest_event",
+      "strict_pass": true,
+      "status": "PASS",
+      "result": {
+        "decision": "ESCALATE",
+        "reason": "organizer requested a concrete action",
+        "exact_action": "Respond to the organizer requirement in: Add a demo disclosure",
+        "interrupt_human": true,
+        "duplicate": false
+      },
+      "failure": null,
+      "stop_reason": "end_turn",
+      "completion_origin": "application_after_tools_hook",
+      "trace": [
+        {
+          "toolUse": {
+            "toolUseId": "tooluse_d0caa385350d40bc9fcbc5c0",
+            "name": "triage_contest_event",
+            "input": {
+              "event_id": "guarded-local-1",
+              "kind": "organizer_request",
+              "received_at": "2026-09-13T16:00:00Z",
+              "sender": "organizer@example.test",
+              "subject": "Add a demo disclosure",
+              "actionable": true,
+              "contest": "Fictional proof contest"
+            }
+          }
+        },
+        {
+          "toolResult": {
+            "toolUseId": "tooluse_d0caa385350d40bc9fcbc5c0",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"decision\": \"ESCALATE\", \"reason\": \"organizer requested a concrete action\", \"exact_action\": \"Respond to the organizer requirement in: Add a demo disclosure\", \"interrupt_human\": true, \"duplicate\": false}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tool": "triage_contest_event",
+      "strict_pass": true,
+      "status": "PASS",
+      "result": {
+        "decision": "RECORD",
+        "reason": "duplicate event; repeated interruption suppressed",
+        "exact_action": null,
+        "interrupt_human": false,
+        "duplicate": true
+      },
+      "failure": null,
+      "stop_reason": "end_turn",
+      "completion_origin": "application_after_tools_hook",
+      "trace": [
+        {
+          "toolUse": {
+            "toolUseId": "tooluse_10fc77eef21945c3826dd487",
+            "name": "triage_contest_event",
+            "input": {
+              "kind": "organizer_request",
+              "received_at": "2026-09-13T16:00:00Z",
+              "sender": "organizer@example.test",
+              "subject": "Add a demo disclosure",
+              "actionable": true,
+              "contest": "Fictional proof contest",
+              "event_id": "guarded-local-1"
+            }
+          }
+        },
+        {
+          "toolResult": {
+            "toolUseId": "tooluse_10fc77eef21945c3826dd487",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"decision\": \"RECORD\", \"reason\": \"duplicate event; repeated interruption suppressed\", \"exact_action\": null, \"interrupt_human\": false, \"duplicate\": true}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tool": "campaign_attention_metrics",
+      "strict_pass": true,
+      "status": "PASS",
+      "result": {
+        "unique_events": 1,
+        "human_interruptions": 1,
+        "interruptions_avoided": 0,
+        "avoidance_rate": 0.0
+      },
+      "failure": null,
+      "stop_reason": "end_turn",
+      "completion_origin": "application_after_tools_hook",
+      "trace": [
+        {
+          "toolUse": {
+            "toolUseId": "tooluse_26632f44af8242dba987cbd8",
+            "name": "campaign_attention_metrics",
+            "input": {}
+          }
+        },
+        {
+          "toolResult": {
+            "toolUseId": "tooluse_26632f44af8242dba987cbd8",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"unique_events\": 1, \"human_interruptions\": 1, \"interruptions_avoided\": 0, \"avoidance_rate\": 0.0}"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "unique_events": 1,
+    "human_interruptions": 1,
+    "interruptions_avoided": 0,
+    "avoidance_rate": 0.0
+  },
+  "fictional_data_only": true,
+  "notification_delivery": false
+}
