@@ -1,0 +1,22 @@
+[
+ {"start":0,"end":6.76,"text":"Every update asks for a little attention. A receipt. A newsletter. The same urgent message, delivered again."},
+ {"start":6.98,"end":12.64,"text":"For independent makers managing contest deadlines, the hard part is knowing when something actually needs a decision."},
+ {"start":13.56,"end":19.78,"text":"Only When It Matters is a small, local-first prototype: keep the first decision, and make the retry quiet."},
+ {"start":20.58,"end":25.68,"text":"This demonstration uses fictional events. It does not read a live inbox or send notifications."},
+ {"start":26.04,"end":29.12,"text":"The public replay shows five deliveries and four unique events."},
+ {"start":29.12,"end":36.5,"text":"A newsletter passes quietly. A receipt is recorded. An organizer request and a fictional winner notice request attention."},
+ {"start":37.16,"end":41.66,"text":"When that winner notice arrives again, the result contains no interruption and no action."},
+ {"start":42.1,"end":49.64,"text":"The first saved decision remains unchanged. The separate working agent uses the Strands Agents SDK and a local Qwen model."},
+ {"start":50.4,"end":56.98,"text":"In the recorded run, the model selected triage, supplied the unchanged event, and received one concrete action."},
+ {"start":56.98,"end":61.36,"text":"A fresh request retried the same event and received a quiet result."},
+ {"start":62.04,"end":66.48,"text":"The metrics tool then confirmed one unique event and one escalation decision."},
+ {"start":67.02,"end":70.98,"text":"Application hooks enforce one valid tool call and return the checked result."},
+ {"start":71.56,"end":74.78,"text":"Extra calls or changed inputs are rejected before execution."},
+ {"start":75.42,"end":78.14,"text":"This is enforced code, not a promise in a prompt."},
+ {"start":78.9,"end":81.58,"text":"Tests also inject failures before and after saving,"},
+ {"start":81.58,"end":86.86,"text":"then check what happens on retry. The public page is a static replay, not the live model."},
+ {"start":87.5,"end":91.26,"text":"Counts are policy decisions, not verified wins or measured time saved."},
+ {"start":91.76,"end":97.78,"text":"Sender verification, real notification delivery, and multi-process coordination remain outside this prototype."},
+ {"start":98.46,"end":101.54,"text":"The source and architecture are public under the MIT license."},
+ {"start":102.4,"end":107.12,"text":"The aim is simple: let routine work stay routine, and make the next real decision clear."}
+]

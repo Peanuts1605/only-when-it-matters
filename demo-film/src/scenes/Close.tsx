@@ -1,0 +1,3 @@
+import React from 'react';
+import {Frame,Title,Small,Card} from '../Design';
+export const Close:React.FC=()=> <Frame label="Boundaries · source · next decision"><Title>Let routine work<br/>stay routine.</Title><div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:30}}><Card><b>What this proves</b><Small>A quiet duplicate result.<br/>One guarded local model sequence.<br/>Fictional policy counts.</Small></Card><Card><b>What it does not prove</b><Small>Verified senders or wins.<br/>Notification delivery or time saved.<br/>Multi-process coordination.</Small></Card></div><p style={{fontSize:27,marginTop:26}}>MIT source + architecture: github.com/Peanuts1605/only-when-it-matters</p></Frame>;

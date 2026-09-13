@@ -1,0 +1,9 @@
+{
+  "name": "only-when-it-matters-film",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {"studio": "remotion studio src/index.tsx --no-open", "render": "remotion render src/index.tsx OnlyWhenItMatters out/only-when-it-matters-v1.mp4", "check": "tsc --noEmit"},
+  "dependencies": {"@remotion/cli": "4.0.508", "@remotion/media": "4.0.508", "@remotion/transitions": "4.0.508", "remotion": "4.0.508", "react": "19.2.3", "react-dom": "19.2.3"},
+  "devDependencies": {"typescript": "5.9.3", "@types/react": "19.2.7"}
+}

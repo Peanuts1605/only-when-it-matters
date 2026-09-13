@@ -1,0 +1,5 @@
+import React from 'react';
+import {useCurrentFrame} from 'remotion';
+import {Frame,Title,Small,Card} from '../Design';
+import proof from '../../../docs/guarded-model-run.json';
+export const ModelProof:React.FC=()=>{const f=useCurrentFrame(); const phase=f<12*30?0:f<17*30?1:2;return <Frame label="Recorded local evaluation · 13 Sep 2026"><Title>A real model run.<br/>A checked result.</Title><div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:35}}><div><Small>Qwen 3:4b → Strands 1.54.0<br/>→ caller-owned SQLite ledger</Small><Small>One allowed tool per fresh request.<br/>Application-generated final JSON.</Small><p style={{fontSize:26}}>One successful sequence, not a reliability rate.<br/>Results displayed from the saved evaluation.</p></div><Card hot={phase===0}><div style={{fontSize:24,marginBottom:16}}>{['01 · ORIGINAL TRIAGE','02 · FRESH RETRY','03 · LEDGER METRICS'][phase]}</div><pre style={{fontFamily:'monospace',fontSize:23,whiteSpace:'pre-wrap',overflowWrap:'anywhere',margin:0}}>{JSON.stringify(proof.phases[phase].result,null,2)}</pre></Card></div></Frame>};

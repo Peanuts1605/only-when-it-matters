@@ -11,6 +11,10 @@ original decision remains in an auditable SQLite ledger.
 
 **Live fixture:** https://only-when-it-matters.gigantic-stranger.workers.dev/
 
+**Narrated review demo (1:50):** https://youtu.be/0SPfU4ZGwm4
+— fictional replay and separately recorded model results, not a live inbox or contest-submission claim.
+Editable film source and narration provenance are in [demo-film](demo-film/README.md).
+
 ```bash
 python -m venv .venv
 .venv/bin/pip install -e '.[dev]'
@@ -86,7 +90,7 @@ organizer-event run does not establish acceptance stability for every event type
 `build_agent` route remains unconstrained; the new guarded route is the accepted demonstration.
 
 Remaining entry work: broader model reliability validation, entrant and
-AWS Builder ID verification, registration, a reviewed narrated demo no longer than five minutes, final
+AWS Builder ID verification, registration, final
 release review, and provider-confirmed submission. Architecture packaging does not clear those gates.
 
 ## License
