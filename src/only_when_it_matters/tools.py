@@ -39,6 +39,5 @@ def triage_contest_event(
 
 @tool
 def campaign_attention_metrics() -> dict[str, int | float]:
-    """Return measured human interruptions and avoided interruptions for unique events."""
+    """Return simulated escalation and quiet-decision counts for unique events, not delivery."""
     return _store.metrics()
-

@@ -13,10 +13,13 @@ without provider evidence.
 """.strip()
 
 
-def build_agent(model=None) -> Agent:
+def build_agent(model=None, *, callback_handler=None) -> Agent:
     """Build the contest's required Strands agent with an injectable model provider."""
-    kwargs = {"system_prompt": SYSTEM_PROMPT, "tools": [triage_contest_event, campaign_attention_metrics]}
+    kwargs = {
+        "system_prompt": SYSTEM_PROMPT,
+        "tools": [triage_contest_event, campaign_attention_metrics],
+        "callback_handler": callback_handler,
+    }
     if model is not None:
         kwargs["model"] = model
     return Agent(**kwargs)
-

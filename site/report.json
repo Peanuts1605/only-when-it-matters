@@ -37,10 +37,10 @@
       "duplicate": false
     },
     {
-      "event_id": "evt-receipt",
-      "contest": "WebMCP Challenge",
+      "event_id": "evt-winner",
+      "contest": "Agents for Humans",
       "decision": "RECORD",
-      "reason": "useful delivery evidence without a human decision",
+      "reason": "duplicate event; repeated interruption suppressed",
       "exact_action": null,
       "interrupt_human": false,
       "duplicate": true

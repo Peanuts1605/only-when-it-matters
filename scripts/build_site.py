@@ -12,9 +12,8 @@ def main() -> None:
     report = run_scenario(ROOT / "tests" / "fixtures.json")
     destination = ROOT / "site" / "report.json"
     destination.write_text(json.dumps(report, indent=2) + "\n")
-    print(f"Built {destination.relative_to(ROOT)} from the Strands tool policy.")
+    print(f"Built {destination.relative_to(ROOT)} from the direct deterministic fixture replay.")
 
 
 if __name__ == "__main__":
     main()
-

@@ -3,15 +3,19 @@ from __future__ import annotations
 import json
 import sqlite3
 from pathlib import Path
+from threading import RLock
 
-from .policy import Classification, Event, classify_event
+from .policy import Classification, Decision, Event, classify_event
 
 
 class EventStore:
     """Small idempotent ledger for replayable contest-event decisions."""
 
     def __init__(self, path: str | Path = ":memory:") -> None:
-        self.connection = sqlite3.connect(str(path))
+        # Strands dispatches synchronous tools on worker threads. Serialize every
+        # operation on this shared connection, including the read/insert pair.
+        self._lock = RLock()
+        self.connection = sqlite3.connect(str(path), check_same_thread=False)
         self.connection.row_factory = sqlite3.Row
         self.connection.execute(
             """
@@ -24,12 +28,21 @@ class EventStore:
         )
 
     def process(self, event: Event) -> tuple[Classification, bool]:
+        with self._lock:
+            return self._process_locked(event)
+
+    def _process_locked(self, event: Event) -> tuple[Classification, bool]:
         existing = self.connection.execute(
             "SELECT decision_json FROM event_decisions WHERE event_id = ?", (event.event_id,)
         ).fetchone()
         if existing:
-            data = json.loads(existing["decision_json"])
-            return Classification(**data), True
+            # Keep the first decision in the ledger without replaying its action.
+            return Classification(
+                Decision.RECORD,
+                "duplicate event; repeated interruption suppressed",
+                None,
+                False,
+            ), True
 
         classification = classify_event(event)
         with self.connection:
@@ -44,7 +57,9 @@ class EventStore:
         return classification, False
 
     def metrics(self) -> dict[str, int | float]:
-        rows = self.connection.execute("SELECT decision_json FROM event_decisions").fetchall()
+        """Count unique-event policy decisions, not delivered human notifications."""
+        with self._lock:
+            rows = self.connection.execute("SELECT decision_json FROM event_decisions").fetchall()
         decisions = [json.loads(row["decision_json"])["decision"] for row in rows]
         total = len(decisions)
         interruptions = decisions.count("ESCALATE")
@@ -55,4 +70,3 @@ class EventStore:
             "interruptions_avoided": avoided,
             "avoidance_rate": round(avoided / total, 3) if total else 0.0,
         }
-

@@ -23,7 +23,7 @@ const render = async () => {
       <span class="event-index">${String(index + 1).padStart(2, '0')}</span>
       <div class="event-copy"><strong>${event.contest}</strong><span>${event.event_id}${event.duplicate ? ' · duplicate replay' : ''}</span></div>
       <p class="event-reason">${event.reason}</p>
-      <span class="pill ${event.decision.toLowerCase()}">${label[event.decision]}</span>
+      <span class="pill ${event.decision.toLowerCase()}">${event.duplicate ? 'QUIET REPLAY' : label[event.decision]}</span>
     `;
     timeline.append(row);
   });
@@ -33,4 +33,3 @@ replay.addEventListener('click', render);
 render().catch(() => {
   timeline.textContent = 'The public proof could not be loaded. Please retry.';
 });
-

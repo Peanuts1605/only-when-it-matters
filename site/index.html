@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A Strands agent that protects human attention during contest delivery." />
+    <meta name="description" content="A deterministic contest-attention prototype with a separate Strands integration." />
     <title>Only When It Matters</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
@@ -14,18 +14,19 @@
           <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
           <span>Only When It Matters</span>
         </a>
-        <span class="runtime"><i></i> Strands vertical slice · fixture replay</span>
+        <span class="runtime"><i></i> Deterministic fixture · Strands integration separate</span>
       </header>
 
       <section class="hero" id="proof">
         <p class="eyebrow">Attention is an authority boundary</p>
         <h1>Let the routine pass.<br /><em>Interrupt with purpose.</em></h1>
-        <p class="lede">A contest-delivery agent that stays quiet through noise and repetition—then arrives with one exact action when a human decision truly matters.</p>
+        <p class="lede">A contest-attention prototype that stays quiet through noise and repetition—then returns one exact action for a meaningful event. This public-safe replay tests the policy, without a model or live inbox.</p>
         <div class="score" aria-label="Attention metrics">
           <div><strong id="events">—</strong><span>unique events</span></div>
-          <div class="protected"><strong id="avoided">—</strong><span>interruptions avoided</span></div>
-          <div class="human"><strong id="interruptions">—</strong><span>human boundaries</span></div>
+          <div class="protected"><strong id="avoided">—</strong><span>quiet decisions</span></div>
+          <div class="human"><strong id="interruptions">—</strong><span>escalation decisions</span></div>
         </div>
+        <p class="proof-note">Counts describe four unique fixture events, not delivered notifications or measured human outcomes. The fifth delivery is a duplicate and adds no new action.</p>
       </section>
 
       <section class="stream" aria-labelledby="stream-title">
@@ -42,21 +43,21 @@
       <section class="boundary">
         <div>
           <p class="eyebrow">The non-negotiable line</p>
-          <h2>The model can explain.<br />It cannot manufacture urgency.</h2>
+          <h2>One saved decision.<br />No repeated action.</h2>
         </div>
         <ol>
-          <li><span>01</span><div><strong>Strands chooses the tool</strong><p>The agent interprets the request and invokes a narrow, documented capability.</p></div></li>
-          <li><span>02</span><div><strong>Deterministic policy decides</strong><p>Deadlines, organizer requests, results, and duplicates follow explicit rules.</p></div></li>
-          <li><span>03</span><div><strong>The ledger makes retry honest</strong><p>One event ID produces one decision—even when delivery repeats.</p></div></li>
+          <li><span>01</span><div><strong>Two paths, clearly separated</strong><p>This fixture calls the policy directly. A local Qwen/Strands run executed triage successfully, but failed the strict sequence by calling the retry tool twice. Both retries stayed quiet. This page is not a live model run.</p></div></li>
+          <li><span>02</span><div><strong>Deterministic policy decides</strong><p>Trusted fixture labels drive explicit rules. This prototype does not verify senders or establish that a claimed win is real.</p></div></li>
+          <li><span>03</span><div><strong>The ledger makes retry quiet</strong><p>The original decision stays unchanged. A repeated ID returns no interruption flag and no action, including after reopening the ledger.</p></div></li>
         </ol>
       </section>
     </main>
 
     <footer>
       <p>Public-safe proof · no live inbox · no paid model · no submission claim</p>
+      <a href="/architecture.pdf">Read the architecture →</a>
       <a href="https://github.com/Peanuts1605/only-when-it-matters">Inspect the MIT-licensed proof →</a>
     </footer>
     <script src="/app.js" type="module"></script>
   </body>
 </html>
-
